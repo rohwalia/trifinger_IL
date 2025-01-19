@@ -1,0 +1,206 @@
+_target_: consistency_policy.baseline.train_diffusion_unet_hybrid_workspace.TrainDiffusionUnetHybridWorkspace
+checkpoint:
+  save_last_ckpt: true
+  save_last_snapshot: false
+  topk:
+    format_str: epoch={epoch:04d}-val_loss={val_loss:.3f}.ckpt
+    k: 5
+    mode: min
+    monitor_key: val_loss
+dataloader:
+  batch_size: 16 #128
+  num_workers: 8
+  persistent_workers: false
+  pin_memory: true
+  shuffle: true
+dataset_obs_steps: 2
+ema:
+  _target_: diffusion_policy.model.diffusion.ema_model.EMAModel
+  inv_gamma: 1.0
+  max_value: 0.9999
+  min_value: 0.0
+  power: 0.75
+  update_after_step: 0
+exp_name: default
+horizon: 16
+keypoint_visible_rate: 1.0
+logging:
+  group: null
+  id: null
+  mode: online
+  name: ddim_push_fix_low
+  project: trifinger
+  resume: false
+  tags:
+  - train_diffusion_unet_hybrid
+  - push_fix_low
+  - test
+multi_run:
+  run_dir: data/outputs/2022.12.29/22.31.30_train_diffusion_unet_hybrid_square_image
+  wandb_name_base: dp_test
+n_action_steps: 8
+n_latency_steps: 0
+n_obs_steps: 2
+name: train_diffusion_unet_hybrid
+obs_as_global_cond: true
+optimizer:
+  _target_: torch.optim.AdamW
+  betas:
+  - 0.95
+  - 0.999
+  eps: 1.0e-08
+  lr: 0.0001
+  weight_decay: 1.0e-06
+past_action_visible: false
+policy:
+  _target_: diffusion_policy.policy.diffusion_unet_hybrid_image_policy.DiffusionUnetHybridImagePolicy
+  cond_predict_scale: true
+  crop_shape: null
+  diffusion_step_embed_dim: 128
+  down_dims:
+  - 512
+  - 1024
+  - 2048
+  eval_fixed_crop: true
+  horizon: 16
+  kernel_size: 5
+  n_action_steps: 8
+  n_groups: 8
+  n_obs_steps: 2
+  noise_scheduler:
+    # _target_: diffusers.schedulers.scheduling_ddpm.DDPMScheduler
+    # beta_end: 0.02
+    # beta_schedule: squaredcos_cap_v2
+    # beta_start: 0.0001
+    # clip_sample: true
+    # num_train_timesteps: 100
+    # prediction_type: epsilon
+    # variance_type: fixed_small
+    _target_: diffusers.schedulers.scheduling_ddim.DDIMScheduler
+    num_train_timesteps: 100
+    beta_start: 0.0001
+    beta_end: 0.02
+    beta_schedule: squaredcos_cap_v2
+    clip_sample: True
+    set_alpha_to_one: True
+    steps_offset: 0
+    prediction_type: epsilon # or sample
+  num_inference_steps: 15
+  obs_as_global_cond: true
+  obs_encoder_group_norm: true
+  shape_meta:
+        action:
+          shape:
+          - 9 # qpos one timestep in the future from the observation
+        obs:
+          camera_0:
+            shape: [3, 270, 360] # number of images, channels, height, width
+            type: rgb
+          camera_1:
+            shape: [3, 270, 360] # number of images, channels, height, width
+            type: rgb
+          camera_2:
+            shape: [3, 270, 360] # number of images, channels, height, width
+            type: rgb
+          robot_pose:
+            shape:
+            - 9 # qpos of 3 trifinger arms
+shape_meta:
+      action:
+        shape:
+        - 9 # qpos one timestep in the future from the observation
+      obs:
+        camera_0:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_1:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_2:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        robot_pose:
+          shape:
+          - 9 # qpos of 3 trifinger arms
+task:
+  abs_action: true
+  dataset:
+    _target_: diffusion_policy.dataset.trifinger_dataset.TriFingerDataset
+    #abs_action: true
+    dataset_path: data/push_fix_low.hdf5
+    horizon: 16
+    n_obs_steps: 2
+    pad_after: 7
+    pad_before: 1
+    #rotation_rep: rotation_6d
+    seed: 42
+    shape_meta:
+      action:
+        shape:
+        - 9 # qpos one timestep in the future from the observation
+      obs:
+        camera_0:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_1:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_2:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        robot_pose:
+          shape:
+          - 9 # qpos of 3 trifinger arms
+    use_cache: true
+    val_ratio: 0.02
+  dataset_path: data/push_fix_low.hdf5
+  dataset_type: ph
+  name: push_fix_low_image
+  shape_meta:
+      action:
+        shape:
+        - 9 # qpos one timestep in the future from the observation
+      obs:
+        camera_0:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_1:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        camera_2:
+          shape: [3, 270, 360] # number of images, channels, height, width
+          type: rgb
+        robot_pose:
+          shape:
+          - 9 # qpos of 3 trifinger arms
+  task_name: push_fix_low
+task_name: push_fix_low
+training:
+  checkpoint_every: 5
+  inference_mode: false
+  online_rollouts: false
+  debug: false
+  device: cuda
+  gradient_accumulate_every: 1
+  lr_scheduler: cosine
+  lr_warmup_steps: 500
+  max_train_steps: null
+  max_val_steps: null
+  num_epochs: 8000
+  resume: false
+  resume_path: None
+  rollout_every: 50
+  sample_every: 5
+  seed: 42
+  tqdm_interval_sec: 1.0
+  use_ema: true
+  val_every: 1
+  val_sample_every: 5
+  num_evaluate_steps: 8
+  output_dir: outputs/ddim/push_fix_low
+val_dataloader:
+  batch_size: 64
+  num_workers: 8
+  persistent_workers: false
+  pin_memory: true
+  shuffle: false

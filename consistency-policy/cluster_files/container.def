@@ -1,0 +1,54 @@
+Bootstrap: docker
+From: nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04
+
+%files
+    ./environment.yaml /home/environment.yaml
+
+%post
+    # Update package list and install required packages
+    apt-get update && apt-get install -y wget bzip2 \
+        libglfw3 libglew-dev libgl1-mesa-glx libosmesa6 \
+        libglib2.0-0 libxext6 python3 python3-pip \
+        build-essential git
+
+    # Install Miniconda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh
+    bash /tmp/miniconda.sh -b -u -p /opt/miniconda3
+    rm -rf /tmp/miniconda.sh
+
+    # Initialize Conda
+    /opt/miniconda3/bin/conda init bash
+
+    # Create the Conda environment from the YAML file
+    /opt/miniconda3/bin/conda env create -f /home/environment.yaml
+
+    # Cleanup unnecessary files
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    # Set environment variables for MuJoCo
+    export MUJOCO_GL=egl
+    export PYOPENGL_PLATFORM=egl
+    export PATH="/opt/miniconda3/bin:$PATH"
+
+%runscript
+    # Activate the Conda environment when the container is run
+    . /opt/miniconda3/etc/profile.d/conda.sh
+    conda activate consistency-policy
+
+%test
+    # Activate the Conda environment to run tests
+    . /opt/miniconda3/etc/profile.d/conda.sh
+    conda activate consistency-policy
+    # Test if everything is installed correctly and check imports
+    python3 --version
+    python3 -c 'import torch; print(f"torch={torch.__version__}")'
+    python3 -c 'import mujoco; print(f"mujoco={mujoco.__version__}")'
+    python3 -c 'import cv2; print(f"cv2={cv2.__version__}")'
+
+%labels
+    Author Rohan Walia
+    Version v0.0.1
+
+%help
+    Container that sets up the necessary environment for consistency policy training.
