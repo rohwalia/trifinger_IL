@@ -1,4 +1,4 @@
-Learning Dexterous Manipulation Tasks Through Low-Cost Teleoperation and Imitation Learning
+# Learning Dexterous Manipulation Tasks Through Low-Cost Teleoperation and Imitation Learning
 ## Codebase structure
 Clone this repo and create a conda env with this command:\
 ```conda env create -f environment.yaml```\
