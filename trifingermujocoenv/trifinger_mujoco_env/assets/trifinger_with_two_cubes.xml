@@ -1,0 +1,22 @@
+<mujoco model="trifinger_with_cube">
+
+    <!-- Include the three fingers, the boundary and the floor. -->
+    <include file="trifinger_platform.xml"/>
+
+    <!-- Add the cube -->
+    <asset>
+        <texture name="cube_texture" type="cube" gridsize="3 4" gridlayout = ".U..LFRB.D.."  file="cube_texture.png"/>
+        <material name="cube_material" texture="cube_texture" specular="0.1" shininess="0.2"/>
+        <mesh name="cube" file="colored_cube.stl"/>
+    </asset>
+
+    <worldbody>
+        <replicate count="2" offset="0.07 0 0">
+            <body name="cube" pos="-0.035 0 0.0325">
+                <joint name="cube_joint" type="free"/>
+                <geom type="box" size="0.0325 0.0325 0.0325" material="cube_material"/>
+            </body>
+        </replicate>
+    </worldbody>
+
+</mujoco>

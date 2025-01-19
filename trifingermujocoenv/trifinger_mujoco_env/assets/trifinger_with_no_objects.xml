@@ -1,0 +1,6 @@
+<mujoco model="trifinger_with_cube">
+
+    <!-- Include the three fingers, the boundary and the floor. -->
+    <include file="trifinger_platform.xml"/>
+
+</mujoco>

@@ -1,0 +1,161 @@
+<mujocoinclude>
+  <compiler angle="radian"/>
+  <!-- TODO: friction in joints? -->
+  <visual>
+    <global offwidth="720" offheight="720"/>
+  </visual>
+  <asset>
+    <mesh name="prox-sim" file="prox-sim.stl"/>
+    <mesh name="int_sim" file="int_sim.stl"/>
+    <mesh name="tip_link_sim" file="tip_link_sim.stl"/>
+    <mesh name="tip_sim" file="tip_sim.stl"/>
+    <mesh name="trifinger_table_without_border" file="trifinger_table_without_border.stl"/>
+    <mesh name="high_table_boundary_01" file="convex_decomp_barrierpart_001.stl"/>
+    <mesh name="high_table_boundary_02" file="convex_decomp_barrierpart_002.stl"/>
+    <mesh name="high_table_boundary_03" file="convex_decomp_barrierpart_003.stl"/>
+    <mesh name="high_table_boundary_04" file="convex_decomp_barrierpart_004.stl"/>
+    <mesh name="high_table_boundary_05" file="convex_decomp_barrierpart_005.stl"/>
+    <mesh name="high_table_boundary_06" file="convex_decomp_barrierpart_006.stl"/>
+    <mesh name="high_table_boundary_07" file="convex_decomp_barrierpart_007.stl"/>
+    <mesh name="high_table_boundary_08" file="convex_decomp_barrierpart_008.stl"/>
+    <mesh name="high_table_boundary_09" file="convex_decomp_barrierpart_009.stl"/>
+    <mesh name="high_table_boundary_10" file="convex_decomp_barrierpart_010.stl"/>
+    <mesh name="high_table_boundary_11" file="convex_decomp_barrierpart_011.stl"/>
+    <mesh name="high_table_boundary_12" file="convex_decomp_barrierpart_012.stl"/>
+    <mesh name="high_table_boundary_13" file="convex_decomp_barrierpart_013.stl"/>
+    <mesh name="high_table_boundary_14" file="convex_decomp_barrierpart_014.stl"/>
+    <mesh name="high_table_boundary_15" file="convex_decomp_barrierpart_015.stl"/>
+    <mesh name="high_table_boundary_16" file="convex_decomp_barrierpart_016.stl"/>
+    <mesh name="high_table_boundary_17" file="convex_decomp_barrierpart_017.stl"/>
+    <mesh name="high_table_boundary_18" file="convex_decomp_barrierpart_018.stl"/>
+    <mesh name="high_table_boundary_19" file="convex_decomp_barrierpart_019.stl"/>
+    <mesh name="high_table_boundary_20" file="convex_decomp_barrierpart_020.stl"/>
+    <mesh name="high_table_boundary_21" file="convex_decomp_barrierpart_021.stl"/>
+    <mesh name="high_table_boundary_22" file="convex_decomp_barrierpart_022.stl"/>
+    <mesh name="high_table_boundary_23" file="convex_decomp_barrierpart_023.stl"/>
+    <mesh name="high_table_boundary_24" file="convex_decomp_barrierpart_024.stl"/>
+    <mesh name="high_table_boundary_25" file="convex_decomp_barrierpart_025.stl"/>
+    <mesh name="high_table_boundary_26" file="convex_decomp_barrierpart_026.stl"/>
+    <mesh name="high_table_boundary_27" file="convex_decomp_barrierpart_027.stl"/>
+    <mesh name="high_table_boundary_28" file="convex_decomp_barrierpart_028.stl"/>
+    <mesh name="high_table_boundary_29" file="convex_decomp_barrierpart_029.stl"/>
+    <mesh name="high_table_boundary_30" file="convex_decomp_barrierpart_030.stl"/>
+    <mesh name="high_table_boundary_31" file="convex_decomp_barrierpart_031.stl"/>
+    <mesh name="high_table_boundary_32" file="convex_decomp_barrierpart_032.stl"/>
+    <mesh name="high_table_boundary_33" file="convex_decomp_barrierpart_033.stl"/>
+    <mesh name="high_table_boundary_34" file="convex_decomp_barrierpart_034.stl"/>
+    <mesh name="high_table_boundary_35" file="convex_decomp_barrierpart_035.stl"/>
+    <mesh name="high_table_boundary_36" file="convex_decomp_barrierpart_036.stl"/>
+
+    <material name="finger_material" rgba="0.9 0.9 0.9 1" specular="0.1" shininess="0.2"/>
+    <material name="boundary_material" rgba="0.7 0.7 0.7 1" specular="0.3" shininess="0.3"/>
+    <material name="table" rgba="0.2 0.2 0.2 1" specular="0.1" shininess="0.2"/>
+  </asset>
+  <worldbody>
+    <light name="top" pos="0 0 1"/>
+    <camera name="rgb_camera" pos="0 -0.4 0.55" xyaxes="1 0 0 0 0.73 0.6"/>
+    <camera name="dataset_camera1" pos="0.2496 0.2458 0.4190" xyaxes="-0.68061648 0.73250744 0.015891599999999978 -0.5744685599999999 -0.54695352 0.6089692"/>
+    <camera name="dataset_camera2" pos="0.0047 -0.2834 0.4558" xyaxes="0.9997234199999999 -0.015539900000000002 -0.01765338 0.0223077 0.864465 0.5025119"/>
+    <camera name="dataset_camera3" pos="-0.2470 0.2513 0.3943" xyaxes="-0.7062495400000002 -0.7077651600000001 0.01628666000000001 0.55448436 -0.5387086000000001 0.63429972"/>
+
+    <geom material="table" name="table" pos="0 0 0" size="0.3 0.3 0.3" type="plane" friction="0.3 0.005 0.0001"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_01"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_02"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_03"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_04"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_05"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_06"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_07"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_08"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_09"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_10"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_11"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_12"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_13"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_14"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_15"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_16"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_17"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_18"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_19"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_20"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_21"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_22"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_23"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_24"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_25"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_26"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_27"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_28"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_29"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_30"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_31"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_32"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_33"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_34"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_35"/>
+    <geom type="mesh" material="boundary_material" mesh="high_table_boundary_36"/>
+    <body name="finger_upper_link_0" pos="0 0 0.29">
+      <inertial pos="0.006 0.122 0" quat="0.706381 0.7052 0.0462414 -0.0397478" mass="0.26689" diaginertia="0.00102372 0.00102223 6.44164e-05"/>
+      <joint name="finger_base_to_upper_joint_0" pos="0 0 0" axis="0 1 0" range="-0.33 1" actuatorfrcrange="-1000 1000"/>
+      <geom type="mesh" material="finger_material" mesh="prox-sim"/>
+      <body name="finger_middle_link_0" pos="0.01685 0.0505 0">
+        <inertial pos="0.0393501 -0.00012438 -0.086667" quat="0.676911 0.0153968 0.0129048 0.735791" mass="0.27163" diaginertia="0.000948287 0.000941953 7.43298e-05"/>
+        <joint name="finger_upper_to_middle_joint_0" pos="0 0 0" axis="1 0 0" range="0 1.57" actuatorfrcrange="-1000 1000"/>
+        <geom type="mesh" material="finger_material" mesh="int_sim"/>
+        <body name="finger_lower_link_0" pos="0.05015 0 -0.16">
+          <inertial pos="0.0167043 -9.39753e-06 -0.0572394" quat="0.999944 0.000113622 0.0105641 -0.000245622" mass="0.06489" diaginertia="0.000219342 0.000216763 6.9511e-06"/>
+          <joint name="finger_middle_to_lower_joint_0" pos="0 0 0" axis="1 0 0" range="-2.7 0" actuatorfrcrange="-1000 1000"/>
+          <geom type="mesh" material="finger_material" mesh="tip_link_sim"/>
+          <geom name="tip_0" pos="0.019 0 -0.16" type="mesh" rgba="0.33 0.36 0.37 1" mesh="tip_sim" friction="1.1 0.005 0.0001"/>
+          <site name="tip_0" pos="0.019 0 -0.16"/>
+        </body>
+      </body>
+    </body>
+    <body name="finger_upper_link_120" pos="0 0 0.29" quat="0.5 0 0 -0.866025">
+      <inertial pos="0.006 0.122 0" quat="0.706381 0.7052 0.0462414 -0.0397478" mass="0.26689" diaginertia="0.00102372 0.00102223 6.44164e-05"/>
+      <joint name="finger_base_to_upper_joint_120" pos="0 0 0" axis="0 1 0" range="-0.33 1" actuatorfrcrange="-1000 1000"/>
+      <geom type="mesh" material="finger_material" mesh="prox-sim"/>
+      <body name="finger_middle_link_120" pos="0.01685 0.0505 0">
+        <inertial pos="0.0393501 -0.00012438 -0.086667" quat="0.676911 0.0153968 0.0129048 0.735791" mass="0.27163" diaginertia="0.000948287 0.000941953 7.43298e-05"/>
+        <joint name="finger_upper_to_middle_joint_120" pos="0 0 0" axis="1 0 0" range="0 1.57" actuatorfrcrange="-1000 1000"/>
+        <geom type="mesh" material="finger_material" mesh="int_sim"/>
+        <body name="finger_lower_link_120" pos="0.05015 0 -0.16">
+          <inertial pos="0.0167043 -9.39753e-06 -0.0572394" quat="0.999944 0.000113622 0.0105641 -0.000245622" mass="0.06489" diaginertia="0.000219342 0.000216763 6.9511e-06"/>
+          <joint name="finger_middle_to_lower_joint_120" pos="0 0 0" axis="1 0 0" range="-2.7 0" actuatorfrcrange="-1000 1000"/>
+          <geom type="mesh" material="finger_material" mesh="tip_link_sim"/>
+          <geom name="tip_120" pos="0.019 0 -0.16" type="mesh" rgba="0.33 0.36 0.37 1" mesh="tip_sim" friction="1.1 0.005 0.0001"/>
+          <site name="tip_120" pos="0.019 0 -0.16"/>
+        </body>
+      </body>
+    </body>
+    <body name="finger_upper_link_240" pos="0 0 0.29" quat="-0.5 0 0 -0.866025">
+      <inertial pos="0.006 0.122 0" quat="0.706381 0.7052 0.0462414 -0.0397478" mass="0.26689" diaginertia="0.00102372 0.00102223 6.44164e-05"/>
+      <joint name="finger_base_to_upper_joint_240" pos="0 0 0" axis="0 1 0" range="-0.33 1" actuatorfrcrange="-1000 1000"/>
+      <geom type="mesh" material="finger_material" mesh="prox-sim"/>
+      <body name="finger_middle_link_240" pos="0.01685 0.0505 0">
+        <inertial pos="0.0393501 -0.00012438 -0.086667" quat="0.676911 0.0153968 0.0129048 0.735791" mass="0.27163" diaginertia="0.000948287 0.000941953 7.43298e-05"/>
+        <joint name="finger_upper_to_middle_joint_240" pos="0 0 0" axis="1 0 0" range="0 1.57" actuatorfrcrange="-1000 1000"/>
+        <geom type="mesh" material="finger_material" mesh="int_sim"/>
+        <body name="finger_lower_link_240" pos="0.05015 0 -0.16">
+          <inertial pos="0.0167043 -9.39753e-06 -0.0572394" quat="0.999944 0.000113622 0.0105641 -0.000245622" mass="0.06489" diaginertia="0.000219342 0.000216763 6.9511e-06"/>
+          <joint name="finger_middle_to_lower_joint_240" pos="0 0 0" axis="1 0 0" range="-2.7 0" actuatorfrcrange="-1000 1000"/>
+          <geom type="mesh" material="finger_material" mesh="tip_link_sim"/>
+          <geom name="tip_240" pos="0.019 0 -0.16" type="mesh" rgba="0.33 0.36 0.37 1" mesh="tip_sim" friction="1.1 0.005 0.0001"/>
+          <site name="tip_240" pos="0.019 0 -0.16"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor gear="1" joint="finger_base_to_upper_joint_0"/>
+    <motor gear="1" joint="finger_upper_to_middle_joint_0"/>
+    <motor gear="1" joint="finger_middle_to_lower_joint_0"/>
+    <motor gear="1" joint="finger_base_to_upper_joint_120"/>
+    <motor gear="1" joint="finger_upper_to_middle_joint_120"/>
+    <motor gear="1" joint="finger_middle_to_lower_joint_120"/>
+    <motor gear="1" joint="finger_base_to_upper_joint_240"/>
+    <motor gear="1" joint="finger_upper_to_middle_joint_240"/>
+    <motor gear="1" joint="finger_middle_to_lower_joint_240"/>
+  </actuator>
+</mujocoinclude>
