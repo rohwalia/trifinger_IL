@@ -1,0 +1,71 @@
+robot_name: trifinger
+
+# Detector used to teleoperate the robot
+detector:
+  _target_: openteach.components.detector.oculusbimanual.OculusVRTwoHandDetector
+  host: ${host_address}
+  oculus_right_port: ${oculus_reciever_port}
+  oculus_left_port: ${left_hand_receiver_port}
+  keypoint_pub_port: ${keypoint_port}
+  button_port: ${resolution_button_port}
+  button_publish_port: ${resolution_button_publish_port}
+
+# Transformation classes used to transform the keypoints
+transforms:
+  - 
+    _target_: openteach.components.detector.transform_trifinger.TransformHandPositionCoords
+    host: ${host_address}
+    keypoint_port: ${keypoint_port}
+    transformation_port: ${transformed_position_keypoint_port}
+    transformation_port_left: ${transformed_position_left_keypoint_port}
+    moving_average_limit: 1
+
+# Visualizers used to visualize the keypoints stream
+visualizers:
+  -
+    _target_: openteach.components.visualizers.visualizer_2d.Hand2DVisualizer
+    host: ${host_address}
+    transformed_keypoint_port: ${transformed_position_keypoint_port}
+    oculus_feedback_port: ${oculus_graph_port}
+    display_plot: ${visualize_right_2d}
+
+# Operators used to retarget the keypoints
+operators:
+  - 
+    _target_: openteach.components.operators.trifinger_sim.TrifingerSimOperator
+    host: ${host_address}
+    transformed_keypoints_port: ${transformed_position_keypoint_port}
+    transformed_keypoints_port_left: ${transformed_position_left_keypoint_port}
+    stream_configs:
+      host: ${host_address}
+      port: ${sim_image_port}
+    finger_right: ["thumb", "index"]
+    finger_left: ["index"]
+    stream_oculus: true
+    endeff_publish_port: 10010
+    scale: ${scale}
+
+# Simulation Environment used to visualize the hand
+environment:
+  - 
+    _target_: openteach.components.environment.trifinger_real_env.TriFingerRealEnv
+    host: ${host_address}
+    camport: ${sim_image_port}
+    task: ${task} # none, push, lift
+    endeffpossubscribeport: 10010
+    stream_oculus: true
+    collect: ${collect}
+    storage_path: ${storage_path}
+    user: ${user}
+
+port_configs:
+  -
+    robot: 'trifinger'
+    host: ${host_address}
+    port: ${sim_image_port}
+    observation_publish_port: 10009
+
+# Information to be recorded by the robot 
+recorded_data:
+  - 
+    - observation
