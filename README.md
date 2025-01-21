@@ -1,13 +1,11 @@
-# Learning Dexterous Manipulation Tasks Through Low-Cost Teleoperation and Imitation Learning
+# Learning Three-Fingered Manipulation Through Low-Cost Teleoperation and Imitation Learning
+
+[Rohan Walia]()<sup>1</sup>
+
+<sup>1</sup>Technical University of Munich
+<img src="overview.png" alt="TriFinger" width="30%"/>
+
 ## Codebase structure
-Clone this repo and create a conda env with this command:\
-```conda env create -f environment.yaml```\
-Might be a couple of packages that are not included, just install those when trying to run the code.\
-Also install the library on the rohan_dev branch of this repo: https://gitlab.is.tue.mpg.de/nguertler/trifingermujocoenv/-/tree/rohan_dev?ref_type=heads\
-Activate the conda env by:\
-```conda activate openteach```\
-and then use this command:\
-```pip install git+ssh://git@gitlab.is.tue.mpg.de/nguertler/trifingermujocoenv.git@rohan_dev#egg=trifinger_mujoco_env```\
-WARNING: when the branch receives new commits, you have to upgrade the library manaully to get it on your system
+The teleoperation implementation is given in the directory [open_teach](./open_teach) and the MuJoCo simulation environment used in [trifingermujocoenv](./trifingermujocoenv). Instructions how to setup  For the imitation learning algorithms, training and evaluation was done for Diffusion Policy (DP) and Consistency Policy (CP)
 
 ## Videos
