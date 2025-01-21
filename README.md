@@ -1,9 +1,5 @@
-# Learning Dexterous Manipulation Tasks Through Low-Cost Teleoperation and Imitation Learning
+# Learning Three-Fingered Manipulation Through Low-Cost Teleoperation and Imitation Learning
 ## Codebase structure
-The teleoperation implementation is given in the directory [open_teach](./open_teach)
-```conda activate openteach```\
-and then use this command:\
-```pip install git+ssh://git@gitlab.is.tue.mpg.de/nguertler/trifingermujocoenv.git@rohan_dev#egg=trifinger_mujoco_env```\
-WARNING: when the branch receives new commits, you have to upgrade the library manaully to get it on your system
+The teleoperation implementation is given in the directory [open_teach](./open_teach) and the MuJoCo simulation environment used in [trifingermujocoenv](./trifingermujocoenv). Instructions how to setup  For the imitation learning algorithms, training and evaluation was done for Diffusion Policy (DP) and Consistency Policy (CP)
 
 ## Videos
