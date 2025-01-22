@@ -14,4 +14,4 @@ The teleoperation implementation is given in the directory [open_teach](./open_t
 In [videos](./videos) there are demonstration samples as well as deployment videos for the IL algorithms in simulation for the two manipulaton tasks PushCubeSim and LiftCubeSim.
 
 ## IL training plots
-In [training_plots](./training_plots) there are the learning curves for CP and DP in the diffusion directory and for EBC and ACT in the correspondingly named ones.
+In the [training_plots](./training_plots) directory, you can find the learning curves for CP and DP in the diffusion subdirectory, and for EBC and ACT in their respective directories.
